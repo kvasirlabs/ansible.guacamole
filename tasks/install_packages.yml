@@ -1,0 +1,12 @@
+---
+- name: Install epel repository
+  yum:
+    name: epel-release
+    state: present
+
+- name: Install necessary packages
+  yum:
+    name: '{{ item.package }}'
+    state: present
+    enablerepo: epel-testing
+  with_items: "{{ guacamole_packages_EL }}"
